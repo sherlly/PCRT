@@ -503,6 +503,13 @@ class PNG(object):
 		# IHDR:length=13(4 bytes)+chunk_type='IHDR'(4 bytes)+chunk_ihdr(length bytes)+crc(4 bytes)
 		# chunk_ihdr=width(4 bytes)+height(4 bytes)+left(5 bytes)
 		pos,IHDR=self.FindIHDR(data)
+#AW# Need to collect remainder of image data after IHDR for use later in the function
+		idat_begin=data.find('IDAT')
+		if idat_begin != -1:
+			remainder=data[idat_begin-4:]
+		else:
+			remainder=data[pos+21:]
+###			
 		if pos==-1:
 			print Termcolor('Detected','Lost IHDR chunk')
 			return -1
@@ -526,16 +533,24 @@ class PNG(object):
 					# fix height
 					for h in xrange(height,width):
 						chunk_ihdr=IHDR[8:12]+struct.pack('!I',h)+IHDR[16:8+length]
-						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
-							IHDR=IHDR[:8]+chunk_ihdr+crc
+#AW# this was not catching broken CRC
+#AW#						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
+						if self.Checkcrc(chunk_type,chunk_ihdr,crc) != None:
+#AW# this was only outputing the IHDR, not the rest of the image
+#							IHDR=IHDR[:8]+chunk_ihdr+crc
+							IHDR=IHDR[:8]+chunk_ihdr+calc_crc+remainder
 							print '[Finished] Successfully fix crc'
 							break
 				else:
 					# fix width
 					for w in xrange(width,height):
 						chunk_ihdr=struct.pack('!I',w)+IHDR[12:8+length]
-						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
-							IHDR=IHDR[:8]+chunk_ihdr+crc
+#AW# this was not catching broken CRC
+###						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
+						if self.Checkcrc(chunk_type,chunk_ihdr,crc) != None:
+#AW# this was only outputing the IHDR, not the rest of the image
+#							IHDR=IHDR[:8]+chunk_ihdr+crc
+							IHDR=IHDR[:8]+chunk_ihdr+calc_crc+remainder
 							print '[Finished] Successfully fix crc'
 							break
 		else:
