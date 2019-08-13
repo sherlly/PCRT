@@ -526,16 +526,16 @@ class PNG(object):
 					# fix height
 					for h in xrange(height,width):
 						chunk_ihdr=IHDR[8:12]+struct.pack('!I',h)+IHDR[16:8+length]
-						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
-							IHDR=IHDR[:8]+chunk_ihdr+crc
+						if self.Checkcrc(chunk_type,chunk_ihdr,calc_crc) == None:
+							IHDR=IHDR[:8]+chunk_ihdr+calc_crc
 							print '[Finished] Successfully fix crc'
 							break
 				else:
 					# fix width
 					for w in xrange(width,height):
 						chunk_ihdr=struct.pack('!I',w)+IHDR[12:8+length]
-						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
-							IHDR=IHDR[:8]+chunk_ihdr+crc
+						if self.Checkcrc(chunk_type,chunk_ihdr,calc_crc) == None:
+							IHDR=IHDR[:8]+chunk_ihdr+calc_crc
 							print '[Finished] Successfully fix crc'
 							break
 		else:
