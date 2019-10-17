@@ -544,14 +544,15 @@ class PNG(object):
 							IHDR=IHDR[:8]+chunk_ihdr+calc_crc
 							print '[Finished] Successfully fix crc'
 							break
-				else if fix==0:
+				else :
+					if fix==0:
 					# fix width
-					for w in xrange(width,height):
-						chunk_ihdr=struct.pack('!I',w)+IHDR[12:8+length]
-						if self.Checkcrc(chunk_type,chunk_ihdr,calc_crc) == None:
-							IHDR=IHDR[:8]+chunk_ihdr+calc_crc
-							print '[Finished] Successfully fix crc'
-							break
+						for w in xrange(width,height):
+							chunk_ihdr=struct.pack('!I',w)+IHDR[12:8+length]
+							if self.Checkcrc(chunk_type,chunk_ihdr,calc_crc) == None:
+								IHDR=IHDR[:8]+chunk_ihdr+calc_crc
+								print '[Finished] Successfully fix crc'
+								break
 		else:
 			print '[Finished] Correct IHDR CRC (offset: %s): %s'% (int2hex(pos+4+length),str2hex(crc))
 		self.file.write(IHDR)
