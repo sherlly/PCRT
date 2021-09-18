@@ -522,7 +522,21 @@ class PNG(object):
 				msg = Termcolor('Notice','Try fixing it? (y or n) [default:y] ')
 				choice = raw_input(msg)
 			if choice == 'y' or choice=='':
-				if width > height:
+				fix=0
+				for h in range(0, 65535):
+					for w in range(0, 65535):
+						chunk_ihdr=struct.pack('!I',w)+struct.pack('!I',h)+IHDR[16:8+length]
+						if self.Checkcrc(chunk_type,chunk_ihdr,crc) == None:
+							IHDR=IHDR[:8]+chunk_ihdr+crc
+							fix=1
+							calc_crc=crc
+							print '[Finished] Successfully fix crc'
+							print h
+							print w
+							break
+					if fix==1:
+						break
+				if width > height and fix==0:
 					# fix height
 					for h in xrange(height,width):
 						chunk_ihdr=IHDR[8:12]+struct.pack('!I',h)+IHDR[16:8+length]
@@ -530,14 +544,15 @@ class PNG(object):
 							IHDR=IHDR[:8]+chunk_ihdr+calc_crc
 							print '[Finished] Successfully fix crc'
 							break
-				else:
+				else :
+					if fix==0:
 					# fix width
-					for w in xrange(width,height):
-						chunk_ihdr=struct.pack('!I',w)+IHDR[12:8+length]
-						if self.Checkcrc(chunk_type,chunk_ihdr,calc_crc) == None:
-							IHDR=IHDR[:8]+chunk_ihdr+calc_crc
-							print '[Finished] Successfully fix crc'
-							break
+						for w in xrange(width,height):
+							chunk_ihdr=struct.pack('!I',w)+IHDR[12:8+length]
+							if self.Checkcrc(chunk_type,chunk_ihdr,calc_crc) == None:
+								IHDR=IHDR[:8]+chunk_ihdr+calc_crc
+								print '[Finished] Successfully fix crc'
+								break
 		else:
 			print '[Finished] Correct IHDR CRC (offset: %s): %s'% (int2hex(pos+4+length),str2hex(crc))
 		self.file.write(IHDR)
