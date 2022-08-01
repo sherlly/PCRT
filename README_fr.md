@@ -24,8 +24,8 @@ Peut-être plus dans le futur :)
 
 ## Installation:
 
-- #### **Installer Python 2.7**
-    - [Python 2.7](https://www.python.org/downloads/)
+- #### **Installer Python 3**
+    - [Python 3](https://www.python.org/downloads/)
 
 - #### **Installer les packages Python**
     - Tkinter
@@ -98,6 +98,12 @@ optional arguments:
 4. Relancer l'IDE Python
 
 ## Journal de mise à jour
+
+### Version 1.2:
+
+**Ajouts**:
+
+- Portage en Python 3.X par @Zeecka_
 
 ### Version 1.1:
 

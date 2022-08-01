@@ -24,8 +24,8 @@ It can:
 
 ## Install
 
-- #### **Install Python 2.7**
-	- [Python 2.7](https://www.python.org/downloads/)
+- #### **Install Python 3.X**
+	- [Python 3.X](https://www.python.org/downloads/)
 
 - #### **Install Python dependency packages**
 	- Tkinter
@@ -93,6 +93,13 @@ It can:
 4. Restart the python IDE
 
 ## Release Log
+
+### version 1.2:
+
+
+**Add：**
+
+- Porting to Python 3.X by @Zeecka_
 
 ### version 1.1:
 
