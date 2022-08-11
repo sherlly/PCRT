@@ -1,6 +1,8 @@
 # PCRT (PNG Check & Repair Tool)
-[![Python 2.7](https://img.shields.io/badge/Python-2.7-blue.svg)](https://www.python.org/downloads/) 
+[![Python 3.10](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/downloads/) 
 [![Version 1.1](https://img.shields.io/badge/Version-1.1-brightgreen.svg)]() 
+
+Now supports Python3!
 
 ## Description
 
