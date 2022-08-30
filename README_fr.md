@@ -24,8 +24,8 @@ Peut-être plus dans le futur :)
 
 ## Installation:
 
-- #### **Installer Python 2.7**
-    - [Python 2.7](https://www.python.org/downloads/)
+- #### **Installer Python 3.10**
+    - [Python 3.10](https://www.python.org/downloads/)
 
 - #### **Installer les packages Python**
     - Tkinter
@@ -92,7 +92,7 @@ optional arguments:
 
 > Impossible d'afficher l'image réparée
 
-1. Trouver le fichier nommé `ImageShow.py` sous un chemin tel que `X:\Python27\lib\site-packages\PIL\ImageShow.py`
+1. Trouver le fichier nommé `ImageShow.py` sous un chemin tel que `X:\Python310\lib\site-packages\PIL\ImageShow.py`
 2. Trouver la ligne de code: `return "start /wait %s && ping -n 2 127.0.0.1 >NUL && del /f %s" % (file, file)` autour de la centième ligne et mettez le en commentaire
 3. Ajoutez cette nouvelle ligne de code: `return "start /wait %s && PING 127.0.0.1 -n 5 > NUL && del /f %s" % (file, file)` et sauvegarder
 4. Relancer l'IDE Python

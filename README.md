@@ -26,8 +26,8 @@ It can:
 
 ## Install
 
-- #### **Install Python 2.7**
-	- [Python 2.7](https://www.python.org/downloads/)
+- #### **Install Python 3.10**
+	- [Python 3.10](https://www.python.org/downloads/)
 
 - #### **Install Python dependency packages**
 	- Tkinter
@@ -89,7 +89,7 @@ It can:
 
 > Can't show the repaired image
 
-1. Find the file named `ImageShow.py` under the path like `X:\Python27\lib\site-packages\PIL\ImageShow.py`
+1. Find the file named `ImageShow.py` under the path like `X:\Python310\lib\site-packages\PIL\ImageShow.py`
 2. Find the code `return "start /wait %s && ping -n 2 127.0.0.1 >NUL && del /f %s" % (file, file)` around line 100 and commented it
 3. Add the new code: `return "start /wait %s && PING 127.0.0.1 -n 5 > NUL && del /f %s" % (file, file)` and save
 4. Restart the python IDE
@@ -143,8 +143,8 @@ It can:
 
 ## 安装
 
-- #### **安装 Python 2.7**
-	- [Python 2.7](https://www.python.org/downloads/)
+- #### **安装 Python 3.10**
+	- [Python 3.10](https://www.python.org/downloads/)
 
 - #### **安装需要的Python 依赖包**
 	- Tkinter
@@ -206,7 +206,7 @@ It can:
 
 > 出现修复后图片无法显示时：
 
-1. 找到Python安装路径下的文件 `X:\Python27\lib\site-packages\PIL\ImageShow.py`
+1. 找到Python安装路径下的文件 `X:\Python310\lib\site-packages\PIL\ImageShow.py`
 2. 将在100行左右的代码`return "start /wait %s && ping -n 2 127.0.0.1 >NUL && del /f %s" % (file, file)`注释掉
 3. 添加代码：`return "start /wait %s && PING 127.0.0.1 -n 5 > NUL && del /f %s" % (file, file)`并保存
 4. 重启运行python的IDE
